@@ -35,7 +35,7 @@ about:
   home: https://github.com/jerry-git/pytest-split
   license: MIT
   license_family: MIT
-  license_file: LICENCE
+  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
   summary: pytest plugin to split tests based on execution time.
   description: pytest plugin which splits the test suite to equally sized "sub suites" based on test execution time.
 

@@ -1,5 +1,5 @@
 {% set name = "pytest-split" %}
-{% set version = "0.3.2" %}
+{% set version = "0.3.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f0aceacafc7b65e99eafbfb2a28ba1bf34ad1b9d8f1bfab22d96980a6bff23cc
+  sha256: a20886541711b1c9d2c2b43efb0bbb2dd2a6416d26798e7901e0aac59b62d3d6
 
 build:
   number: 0

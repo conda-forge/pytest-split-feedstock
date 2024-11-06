@@ -18,11 +18,11 @@ build:
 
 requirements:
   host:
-    - python >=3.8,<4.0
+    - python {{ python_min }}.*
     - poetry-core >=1.0.0
     - pip
   run:
-    - python >=3.8.1,<4.0
+    - python >={{ python_min }}
     - pytest >=5.0.0,<9.0.0
 
 test:
@@ -34,6 +34,7 @@ test:
     - pytest --traceconfig | grep pytest-split-{{ version }}
   requires:
     - pip
+    - python ={{ python_min }}
 
 about:
   home: https://github.com/jerry-git/pytest-split

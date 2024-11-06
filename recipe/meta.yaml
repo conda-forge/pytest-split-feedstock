@@ -1,45 +1,49 @@
 {% set name = "pytest-split" %}
-{% set version = "0.8.2" %}
+{% set version = "0.10.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
-  sha256: 446f330e3607572027f3861058c27d9b3eaa80d83dc86675abe2978bbf50c02f
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pytest_split-{{ version }}.tar.gz
+  sha256: adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f
 
 build:
-  number: 0
+  entry_points:
+    - slowest-tests = pytest_split.cli:list_slowest_tests
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 0
 
 requirements:
   host:
-    - python >=3.6,<4
-    - setuptools-scm
-    - poetry
+    - python >=3.8,<4.0
+    - poetry-core >=1.0.0
     - pip
   run:
-    - python >=3.6,<4
-    - pytest >=5.4
+    - python >=3.8.1,<4.0
+    - pytest >=5.0.0,<9.0.0
 
 test:
-  requires:
-    - pip
+  imports:
+    - pytest_split
   commands:
     - pip check
+    - slowest-tests --help
     - pytest --traceconfig | grep pytest-split-{{ version }}
+  requires:
+    - pip
 
 about:
   home: https://github.com/jerry-git/pytest-split
   license: MIT
   license_family: MIT
-  license_file: LICENCE
+  license_file: LICENSE
   summary: pytest plugin to split tests based on execution time.
-  description: pytest plugin which splits the test suite to equally sized "sub suites" based on test execution time.
+  description: Pytest plugin which splits the test suite to equally sized sub suites based on test execution time.
 
-  doc_url: https://github.com/jerry-git/pytest-split
+  doc_url: https://jerry-git.github.io/pytest-split
   dev_url: https://github.com/jerry-git/pytest-split
 
 extra:

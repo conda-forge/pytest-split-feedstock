@@ -11,9 +11,9 @@ Summary: pytest plugin to split tests based on execution time.
 
 Development: https://github.com/jerry-git/pytest-split
 
-Documentation: https://github.com/jerry-git/pytest-split
+Documentation: https://jerry-git.github.io/pytest-split
 
-pytest plugin which splits the test suite to equally sized "sub suites" based on test execution time.
+Pytest plugin which splits the test suite to equally sized sub suites based on test execution time.
 
 Current build status
 ====================

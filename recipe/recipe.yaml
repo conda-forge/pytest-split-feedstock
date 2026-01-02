@@ -7,7 +7,7 @@ package:
   version: ${{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/${{ name[0] }}/ ${{ name }}/pytest_split-${{ version }}.tar.gz
+  - url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name }}-${{ version }}.tar.gz
     sha256: "adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f"
 
 build:

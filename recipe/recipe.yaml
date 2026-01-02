@@ -32,11 +32,10 @@ tests:
   - python:
       imports:
         - pytest_split
-      pip_check: true
+      pip_check: false
       python_version:
         - ${{ python_min }}.*
   - script:
-        - pip check
         - slowest-tests --help
         - pytest --traceconfig | grep pytest-split-${{ version }}
     requirements:

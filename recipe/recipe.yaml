@@ -9,6 +9,8 @@ package:
 source:
   - url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytest_split-${{ version }}.tar.gz
     sha256: "adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f"
+    patches:
+      - fix-py314.patch
 
 build:
   python:
@@ -32,7 +34,7 @@ tests:
   - python:
       imports:
         - pytest_split
-      pip_check: false
+      pip_check: true
       python_version:
         - ${{ python_min }}.*
   - script:

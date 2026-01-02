@@ -2,7 +2,7 @@ context:
   name: "pytest-split"
   version: "0.10.0"
 
-recipe:
+package:
   name: ${{ name }}
   version: ${{ version }}
 
@@ -11,8 +11,9 @@ source:
     sha256: "adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f"
 
 build:
-  entry_points:
-    - slowest-tests = pytest_split.cli:list_slowest_tests
+  python:
+    entry_points:
+      - slowest-tests = pytest_split.cli:list_slowest_tests
   noarch: python
   script: python -m pip install . -vv
   number: 1

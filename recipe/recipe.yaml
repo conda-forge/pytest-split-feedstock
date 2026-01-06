@@ -1,0 +1,57 @@
+context:
+  name: "pytest-split"
+  version: "0.10.0"
+
+package:
+  name: ${{ name }}
+  version: ${{ version }}
+
+source:
+  - url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytest_split-${{ version }}.tar.gz
+    sha256: "adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f"
+
+build:
+  python:
+    entry_points:
+      - slowest-tests = pytest_split.cli:list_slowest_tests
+  noarch: python
+  script: python -m pip install . -vv
+  number: 0
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core >=1.0.0
+    - pip
+
+  run:
+    - python >=${{ python_min }}
+    - pytest >=5.0.0,<9.0.0
+
+tests:
+  - python:
+      imports:
+        - pytest_split
+      pip_check: true
+      python_version:
+        - ${{ python_min }}.*
+  - script:
+        - slowest-tests --help
+        - pytest --traceconfig | grep pytest-split-${{ version }}
+    requirements:
+      run:
+        - pip
+        - python ={{ python_min }}
+
+about:
+  homepage: https://github.com/jerry-git/pytest-split
+  repository: https://github.com/jerry-git/pytest-split
+  license: "MIT"
+  license_file: "LICENSE"
+  summary: "pytest plugin to split tests based on execution time."
+  description: "Pytest plugin which splits the test suite to equally sized sub suites based on test execution time."
+
+extra:
+  recipe-maintainers:
+    - maresb
+    - ma-sadeghi

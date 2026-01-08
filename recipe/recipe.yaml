@@ -42,7 +42,7 @@ tests:
         - ${{ python_check_max }}.*
   - requirements:
       run:
-        - python {{ python_min }}.*
+        - python ${{ python_min }}.*
     script:
       - slowest-tests --help
       - pytest --traceconfig | python -c "import sys; assert 'pytest-split-${{ version }}' in sys.stdin.read()"

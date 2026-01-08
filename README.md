@@ -3,7 +3,7 @@ About pytest-split-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pytest-split-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/jerry-git/pytest-split
+Home: https://pypi.org/project/pytest-split
 
 Package license: MIT
 

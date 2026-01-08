@@ -13,7 +13,7 @@ source:
   url: https://pypi.org/packages/source/p/pytest-split/pytest_split-${{ version }}.tar.gz
   sha256: adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f
   patches:
-    - f0000-pytest-9.patch
+    - 0000-pytest-9.patch
 
 build:
   number: 2

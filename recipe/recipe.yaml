@@ -1,57 +1,59 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
+schema_version: 1
+
 context:
-  name: "pytest-split"
   version: "0.10.0"
+  python_check_max: "3.14"
 
 package:
-  name: ${{ name }}
+  name: pytest-split
   version: ${{ version }}
 
 source:
-  - url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pytest_split-${{ version }}.tar.gz
-    sha256: "adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f"
-    patches:
-      - fix-py314.patch
+  url: https://pypi.org/packages/source/p/pytest-split/pytest_split-${{ version }}.tar.gz
+  sha256: adf80ba9fef7be89500d571e705b4f963dfa05038edf35e4925817e6b34ea66f
+  patches:
+    - f0000-pytest-9.patch
 
 build:
+  number: 2
+  noarch: python
+  script:
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
   python:
     entry_points:
       - slowest-tests = pytest_split.cli:list_slowest_tests
-  noarch: python
-  script: python -m pip install . -vv
-  number: 1
 
 requirements:
   host:
-    - python ${{ python_min }}.*
-    - poetry-core >=1.0.0
     - pip
-
+    - poetry-core >=1.0.0
+    - python ${{ python_min }}.*
   run:
-    - python >=${{ python_min }}
     - pytest >=5.0.0,<10.0.0
+    - python >=${{ python_min }}
 
 tests:
   - python:
-      imports:
-        - pytest_split
+      imports: pytest_split
       pip_check: true
       python_version:
         - ${{ python_min }}.*
-  - script:
-        - slowest-tests --help
-        - pytest --traceconfig | grep pytest-split-${{ version }}
-    requirements:
+        - ${{ python_check_max }}.*
+  - requirements:
       run:
-        - pip
-        - python ={{ python_min }}
+        - python {{ python_min }}.*
+    script:
+      - slowest-tests --help
+      - pytest --traceconfig | python -c "import sys; assert 'pytest-split-${{ version }}' in sys.stdin.read()"
 
 about:
-  homepage: https://github.com/jerry-git/pytest-split
+  homepage: https://pypi.org/project/pytest-split
   repository: https://github.com/jerry-git/pytest-split
-  license: "MIT"
-  license_file: "LICENSE"
-  summary: "pytest plugin to split tests based on execution time."
-  description: "Pytest plugin which splits the test suite to equally sized sub suites based on test execution time."
+  license: MIT
+  license_file: LICENSE
+  summary: pytest plugin to split tests based on execution time.
+  description: Pytest plugin which splits the test suite to equally sized sub suites based on test execution time.
 
 extra:
   recipe-maintainers:

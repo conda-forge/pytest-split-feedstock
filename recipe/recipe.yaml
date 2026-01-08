@@ -16,7 +16,7 @@ source:
     - 0000-pytest-9.patch
 
 build:
-  number: 2
+  number: 1
   noarch: python
   script:
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check

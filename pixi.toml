@@ -5,7 +5,7 @@
 
 [workspace]
 name = "pytest-split-feedstock"
-version = "3.54.1"  # conda-smithy version used to generate this file
+version = "3.54.2"  # conda-smithy version used to generate this file
 description = "Pixi configuration for conda-forge/pytest-split-feedstock"
 authors = ["@conda-forge/pytest-split"]
 channels = ["conda-forge"]
